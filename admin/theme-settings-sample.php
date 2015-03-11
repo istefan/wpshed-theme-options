@@ -50,7 +50,7 @@ $options[] = array( 'title'   => __( 'Example Options', 'textdomain' ),
 // Info (title - description)
 $options[] = array( 'title'   => __( 'WPshed Theme Options', 'textdomain' ), // optional
 					'tab'     => 'options', // must be the same slug as the heading it's belongs to
-                    'desc'    => __( 'This is ', 'textdomain' ), // optional
+                    'desc'    => __( 'A simple Settings API to create advanced WordPress Theme option pages!', 'textdomain' ), // optional
                     'type'    => 'info' );
 
 $options[] = array( 'title'   => __( 'Select Example', 'textdomain' ), // title
@@ -77,13 +77,6 @@ $options[] = array( 'title'   => __( 'Image Upload Example', 'textdomain' ),
                     'id'      => $shortname . '_img_upload_1',
                     'std'     => '',
                     'type'    => 'upload' );
-
-$options[] = array( 'title'   => __( 'Category Select Example', 'textdomain' ),
-					'tab'     => 'options',
-                    'desc'    => __( 'Here\'s an example of a WordPress category select option.', 'textdomain' ),
-                    'id'      => $shortname . '_categories_1',
-                    'std'     => '',
-                    'type'    => 'categories' );
 
 $options[] = array( 'title'   => __( 'Textarea Field Example', 'textdomain' ),
 					'tab'     => 'options',
@@ -196,53 +189,6 @@ $options[] = array( 'title'   => __( 'Checkbox Field 2', 'textdomain' ),
                     'id'      => $shortname . '_checkbox_field_2',
                     'std'     => '',
                     'type'    => 'checkbox' );
-
-
-/* ---------------------------------------------------------------------------------------------------
-    Third Tab
---------------------------------------------------------------------------------------------------- */
-
-
-$options[] = array( 'title'   => __( 'A real life usage example', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Below you can find an example of how you could use the options in real life. As you can see, you can set also different colors for the info section (available: blue, green, yellow, red and grey).', 'textdomain' ),
-                    'style'   => 'yellow',
-                    'type'    => 'info' );
-
-$options[] = array( 'title'   => __( 'Custom Logo Image', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Upload a 400 px x 100 px image to change your default logo.', 'textdomain' ),
-                    'id'      => $shortname . '_logo_image',
-                    'std'     => '',
-                    'type'    => 'upload' );
-
-$options[] = array( 'title'   => __( 'Custom Favicon Image', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Upload a 16px x 16px image to change the default favicon.', 'textdomain' ),
-                    'id'      => $shortname . '_favicon_image',
-                    'std'     => '',
-                    'type'    => 'upload' );
-
-$options[] = array( 'title'   => __( 'Font Color', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Select a color for the heading font.', 'textdomain' ),
-                    'id'      => $shortname . '_font_color',
-                    'std'     => '#444444',
-                    'type'    => 'color' );
-
-$options[] = array( 'title'   => __( 'Featured Section Category', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Select a category to display post in the featured section.', 'textdomain' ),
-                    'id'      => $shortname . '_featured_category',
-                    'std'     => '',
-                    'type'    => 'categories' );
-
-$options[] = array( 'title'   => __( 'Tracking Code', 'textdomain' ),
-					'tab'     => 'layout',
-                    'desc'    => __( 'Paste Google Analytics (or other) tracking code here.', 'textdomain' ),
-                    'id'      => $shortname . '_tracking_code',
-                    'std'     => '',
-                    'type'    => 'textarea' );
 
 
 /* ---------------------------------------------------------------------------------------------------

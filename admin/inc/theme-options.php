@@ -102,11 +102,11 @@ function wto_scripts() {
         wp_enqueue_media();
         wp_enqueue_style( 'wp-color-picker' );
 
-        wp_enqueue_script( 'wto-admin',         get_template_directory_uri().'/admin/js/admin.js', array( 'jquery' ) );
-        wp_enqueue_script( 'wto-colorpicker',   get_template_directory_uri().'/admin/js/colorpicker.js', array( 'wp-color-picker' ) );
-        wp_enqueue_script( 'wto-upload',        get_template_directory_uri().'/admin/js/upload.js', array( 'jquery' ) );
+        wp_enqueue_script( 'wto-admin',         WTO_JS_URL . 'admin.js', array( 'jquery' ) );
+        wp_enqueue_script( 'wto-colorpicker',   WTO_JS_URL . 'colorpicker.js', array( 'wp-color-picker' ) );
+        wp_enqueue_script( 'wto-upload',        WTO_JS_URL . 'upload.js', array( 'jquery' ) );
 
-        wp_enqueue_style( 'wto-admin',          get_template_directory_uri().'/admin/css/admin.css' );
+        wp_enqueue_style( 'wto-admin',          WTO_CSS_URL . 'admin.css' );
 
     }
 
@@ -197,17 +197,22 @@ function wto_page_init() {
 
                 if ( $option['type'] != 'heading' && $option['type'] != 'info' && $option['type'] != 'help' ) {
 
-                    if ( !is_array( $_REQUEST[$option['id']] ) ) {
-                        $the_value = stripslashes( $_REQUEST[$option['id']] );
+                    if ( isset( $_POST[$option['id']] ) ) {
+
+                        if ( ! is_array( $_POST[$option['id']] ) ) {
+                            $the_value = stripslashes( $_POST[$option['id']] );
+                        } else {
+                            $the_value = serialize( $_POST[$option['id']] );
+                        }
+
+                        update_option( $option['id'], $the_value );
+
                     } else {
-                        $the_value = serialize( $_REQUEST[$option['id']] );
+
+                        delete_option( $option['id'] );
+                        
                     }
 
-                    if ( isset( $_REQUEST[$option['id']] ) ) {
-                        update_option( $option['id'], $the_value );
-                    } else {
-                        delete_option( $option['id'] );
-                    }
 
                 }
 
@@ -388,7 +393,7 @@ function wto_html_output() {
                 <tr valign="top">
                 <th scope="row"></th>
                 <td>
-                    <input type="submit" class="button-secondary" onclick="return confirm('<?php _e("This will reset all settings to default values! Consider updating your custom settings before reset. Are you sure you want to reset now?", "wto"); ?>')" value="<?php _e( 'reset all options', 'wto' ); ?>" />
+                    <input type="submit" class="button-secondary" onclick="return confirm('<?php _e("This will reset all settings to default values! Consider updating your custom settings before reset. Are you sure you want to reset now?", "wto"); ?>')" value="<?php _e( 'Reset All Options', 'wto' ); ?>" />
                 </td>
                 </tr>
             
