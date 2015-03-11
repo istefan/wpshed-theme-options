@@ -1,20 +1,14 @@
 <?php
 /**
- * wto Theme Options Framework Machine
- * If not, it will include the sample settings page
- *
- * @since wto TOF 1.0
+ * WPshed Theme Options - Form Fields
  */
 
+// Define the current tab
 $current_tab = ( isset( $_GET[ 'tab' ] ) ) ? $_GET[ 'tab' ] : $options[0]['tab'];
 
 foreach ( $options as $option ) {
 
-    /**
-     * Output of the option types in the sidebar and tab content
-     *
-     * @since wto TOF 1.0
-     */
+    // Define the input field values
     if ( $option['type'] != 'heading' && $option['type'] != 'info' && $option['type'] != 'help' ) {
 
         // Option value variable
@@ -27,16 +21,12 @@ foreach ( $options as $option ) {
         $user_defined_value = ( isset( $option['id'] ) ) ? get_option( $option['id'] ) : '';
 
         // Define the real value based on default or user defined value
-        if ( $user_defined_value == '' ) {
-            $real_value = $default_value;
-        } else {
-            $real_value = $user_defined_value;
-        }
+        $real_value = ( $user_defined_value == '' ) ? $default_value : $user_defined_value;
 
     }
 
 
-    // Switch between option types and populate the sidebar and tab content according to the option type
+    // Switch between option types and populate the form fields according to the option type
     switch ( $option['type'] ) {
 
 
@@ -112,9 +102,9 @@ foreach ( $options as $option ) {
 
                 // Checked value
                 $checked = ( $user_defined_value == 'checked' ) ? 'checked="checked"' : '' ;
-
+                
                 // The checkbox field
-                $tabs .= '<p class="checkbox"><input type="checkbox" name="'.$option['id'].'" id="'.$option['id'].'" value="'.$real_value.'" '.$checked.'>&nbsp;&nbsp;<label for="'.$option['id'].'">'.$option['desc'].'</labe></p>'."\n";
+                $tabs .= '<p class="checkbox"><input type="checkbox" name="'.$option['id'].'" id="'.$option['id'].'" value="checked" '.$checked.'>&nbsp;&nbsp;<label for="'.$option['id'].'">'.$option['desc'].'</labe></p>'."\n";
 
             if( isset($option['desc']) )
                 $tabs .= '<p class="description">'.$option['desc'].'</p>'."\n";
@@ -132,12 +122,8 @@ foreach ( $options as $option ) {
 			$tabs .= '<th scope="row">'. $option['title'] .'</th>'."\n";
 			$tabs .= '<td>'."\n";
 
-                // Display description if any
-                if( isset($option['desc']) )
-                    $tabs .= '<div class="wto-panel-description">'.$option['desc'].'</div>'."\n";
-
                 // Which options should be selected
-                foreach ($option['options'] as $key => $value ) {
+                foreach ( $option['options'] as $key => $value ) {
 
                     $active_attr = ( $key == $real_value ) ? 'checked' : '';
 

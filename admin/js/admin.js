@@ -1,18 +1,9 @@
 /**
- * WPshed Theme Options Framework jQuery Functions
- *
+ * WPshed Theme Options - jQuery Functions
  */
-
 jQuery(document).ready(function($){
+	'use strict';
 
-    /** The Option Tabs */
-
-
-    /** Add "checked" class to image radio fields  */
-    $(".image-radio").click(function(){
-        $(".image-radio").removeClass("checked");
-        $(this).addClass("checked");
-    });
 
 
 });

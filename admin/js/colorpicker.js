@@ -1,5 +1,9 @@
+/**
+ * WPshed Theme Options - WP Color Picker
+ */
 jQuery(document).ready(function($){
+	'use strict';
 
-    $( '.wpshed-color' ).wpColorPicker();
+    $( '.wto-color' ).wpColorPicker();
 
 });
