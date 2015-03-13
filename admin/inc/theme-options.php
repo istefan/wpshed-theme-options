@@ -404,17 +404,39 @@ function wto_html_output() {
         <?php if ( $current_tab == 'backup' ) : ?>
 
             <form method="post" id="restore-form" enctype="multipart/form-data">
+            
             <input type="hidden" name="action" value="restore" />
-            <h3><?php _e('Backup & Restore', 'wto'); ?></h3>
-            <p><?php _e('You can backup your current options and restore it back at a later time. It is recommended to backup your options from time to time if you change some options but would like to keep the old settings as well in case you need it back.', 'wto'); ?></p>
-            <?php if ( get_option( $shortname.'_theme_backup_date') == '' ) { $last_backup = __('never', 'wto'); } else { $last_backup = get_option( $shortname.'_theme_backup_date'); } ?>
-            <p><?php _e('Your last backup', 'wto'); ?>: <strong><?php echo $last_backup; ?></strong></p>
-            <p><a class="button-primary" href="themes.php?page=<?php echo WTO_PAGE_SLUG; ?>&tab=backup&backup=true"><?php _e('Backup Settings', 'wto'); ?></a></p>
-            <p><?php _e('You can use the below section to make local copies of your backup file (simply copy the information in a text file) or to transfer your settings to another site. To import a settings file from another site just paste your backup information below and hit the "Restore Settings" button.', 'wto'); ?></p>
-            <p><?php _e('If no backup file will be pasted, the last local backup will be restored.', 'wto'); ?></p>
-            <p><textarea name="theme_update" class="large-text code" id="theme_update" rows="8" onClick="select(theme_update);"><?php echo get_option( $shortname.'_theme_backup'); ?></textarea></p>
-            <div class="clear"></div>
-            <p><input type="submit" class="button-secondary restore-but" id="restore-but" value="<?php _e('Restore Settings', 'wto'); ?>" /></p>
+
+            <?php
+
+            $last_backup = ( get_option( $shortname.'_theme_backup_date') == '' ) ? __('never', 'wto' ) : get_option( $shortname . '_theme_backup_date' );
+
+            printf( '<h3>%1$s</h3><p>%2$s<br>%3$s</p><p>%4$s: %5$s</p><p><a class="button-primary" href="%6$s">%7$s</a></p>',
+                __( 'Backup & Restore', 'wto' ),
+                __( 'You can backup your current options and restore it back at a later time.', 'wto' ),
+                __( 'It is recommended to backup your options from time to time if you change some options but would like to keep the old settings as well in case you need it back.', 'wto' ),
+                __( 'Your last backup', 'wto' ),
+                $last_backup,
+                admin_url( 'themes.php?page='. WTO_PAGE_SLUG .'&tab=backup&backup=true' ),
+                __( 'Backup Settings', 'wto' ),
+                __( 'You can use the below section to make local copies of your backup file (simply copy the information in a text file) or to transfer your settings to another site.', 'wto' ),
+                __( 'To import a settings file from another site just paste your backup information below and hit the "Restore Settings" button.', 'wto' ),
+                __( 'If no backup file will be pasted, the last local backup will be restored.', 'wto' )
+            );
+
+            printf( '<p>%1$s<br>%2$s</p><p>%3$s</p><p><textarea name="theme_update" class="large-text code" id="theme_update" rows="8" onClick="select(theme_update);">%4$s</textarea></p>',
+                __( 'You can use the below section to make local copies of your backup file (simply copy the information in a text file) or to transfer your settings to another site.', 'wto' ),
+                __( 'To import a settings file from another site just paste your backup information below and hit the "Restore Settings" button.', 'wto' ),
+                __( 'If no backup file will be pasted, the last local backup will be restored.', 'wto' ),
+                get_option( $shortname.'_theme_backup' ),
+                __( 'Restore Settings', 'wto' )
+            );
+
+            ?>
+            
+            <br class="clear">
+            <p><input type="submit" class="button-secondary restore-but" id="restore-but" value="<?php _e( 'Restore Settings', 'wto' ); ?>" /></p>
+            
             </form>
 
         <?php endif; ?>
