@@ -3,7 +3,7 @@
     Plugin Name: WPshed Theme Options
     Plugin URI: http://wto.com/
     Description: Create an easy to use admin panel for your WordPress theme.
-    Version: 1.0
+    Version: 1.1
     Author: Stefan I.
     Author URI: http://istefan.me/
     License: GNU General Public License v2 or later
@@ -16,24 +16,25 @@
  */
 function wto_constants() {
 
-    define( 'WTO_DIR', get_template_directory() . '/admin/' );
-    define( 'WTO_INC_DIR', get_template_directory() . '/admin/inc/' );
-    define( 'WTO_JS_DIR', get_template_directory() . '/admin/js/' );
-    define( 'WTO_CSS_DIR', get_template_directory() . '/admin/css/' );
-    define( 'WTO_IMAGES_DIR', get_template_directory() . '/admin/images/' );
+    define( 'WTO_DIR',          trailingslashit( get_template_directory() ) . 'admin' );
+    define( 'WTO_URL',          trailingslashit( get_template_directory_uri() ) . 'admin' );
 
-    define( 'WTO_URL', get_template_directory_uri() . '/admin/' );
-    define( 'WTO_JS_URL', get_template_directory_uri() . '/admin/js/' );
-    define( 'WTO_CSS_URL', get_template_directory_uri() . '/admin/css/' );
-    define( 'WTO_IMAGES_URL', get_template_directory_uri() . '/admin/images/' );
+    define( 'WTO_INC_DIR',      trailingslashit( WTO_DIR ) . 'inc' );
+    define( 'WTO_JS_DIR',       trailingslashit( WTO_DIR ) . 'js' );
+    define( 'WTO_CSS_DIR',      trailingslashit( WTO_DIR ) . 'css' );
+    define( 'WTO_IMAGES_DIR',   trailingslashit( WTO_DIR ) . 'images' );
+    
+    define( 'WTO_JS_URL',       trailingslashit( WTO_URL ) . 'js' );
+    define( 'WTO_CSS_URL',      trailingslashit( WTO_URL ) . 'css' );
+    define( 'WTO_IMAGES_URL',   trailingslashit( WTO_URL ) . 'images' );
 
-    define( 'WTO_THEME_SETTINGS', WTO_DIR . 'theme-settings.php' );
-    define( 'WTO_THEME_SETTINGS_SAMPLE', WTO_DIR . 'theme-settings-sample.php' );
+    define( 'WTO_THEME_SETTINGS',           trailingslashit( WTO_DIR ) . 'theme-settings.php' );
+    define( 'WTO_THEME_SETTINGS_SAMPLE',    trailingslashit( WTO_DIR ) . 'theme-settings-sample.php' );
 
-    define( 'WTO_FORMS', WTO_INC_DIR . 'forms.php' ); 
+    define( 'WTO_FORMS',                    trailingslashit( WTO_INC_DIR ) . 'forms.php' ); 
 
-    define( 'WTO_PAGE_SLUG', 'theme-options' ); 
-    define( 'WTO_PAGE_NAME', __( 'Theme Options', 'wto' ) );   
+    define( 'WTO_PAGE_SLUG',                'theme-options' ); 
+    define( 'WTO_PAGE_NAME',                __( 'Theme Options', 'wto' ) );   
 
 }
 add_action( 'wto_init', 'wto_constants' );
@@ -102,11 +103,11 @@ function wto_scripts() {
         wp_enqueue_media();
         wp_enqueue_style( 'wp-color-picker' );
 
-        wp_enqueue_script( 'wto-admin',         WTO_JS_URL . 'admin.js', array( 'jquery' ) );
-        wp_enqueue_script( 'wto-colorpicker',   WTO_JS_URL . 'colorpicker.js', array( 'wp-color-picker' ) );
-        wp_enqueue_script( 'wto-upload',        WTO_JS_URL . 'upload.js', array( 'jquery' ) );
+        wp_enqueue_script( 'wto-admin',         trailingslashit( WTO_JS_URL ) . 'admin.js', array( 'jquery' ) );
+        wp_enqueue_script( 'wto-colorpicker',   trailingslashit( WTO_JS_URL ) . 'colorpicker.js', array( 'wp-color-picker' ) );
+        wp_enqueue_script( 'wto-upload',        trailingslashit( WTO_JS_URL ) . 'upload.js', array( 'jquery' ) );
 
-        wp_enqueue_style( 'wto-admin',          WTO_CSS_URL . 'admin.css' );
+        wp_enqueue_style( 'wto-admin',          trailingslashit( WTO_CSS_URL ) . 'admin.css' );
 
     }
 
