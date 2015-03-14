@@ -1,7 +1,7 @@
 <?php
 /*
     Plugin Name: WPshed Theme Options
-    Plugin URI: http://wto.com/
+    Plugin URI: http://wpshed.com/
     Description: Create an easy to use admin panel for your WordPress theme.
     Version: 1.1
     Author: Stefan I.
